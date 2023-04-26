@@ -1,0 +1,73 @@
+@import '../../styles/_mixins.scss';
+
+.home-page {
+
+  &__title {
+    @include title;
+  }
+  &__text {
+    color: white;
+    font-size: 1.4rem;
+    text-align: left;
+    line-height: 2rem;
+    justify-content: center;
+    &--bis {
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+  }
+  &__button {
+    width: 115px;
+    height: 115px;
+    margin: 1.5rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #692398;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #76389f;
+      font-weight: 700;
+    }
+
+    &-icon {
+      display: block;
+      margin: 0 auto;
+      font-size: 7rem;
+      color: #ffffff;
+    }
+    &-text {
+      color: #ffffff;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .home-page {
+    &__container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    &__button {
+      margin: 1.5rem 1.5rem;
+    }
+
+    &__text {
+    text-align: center;
+      &--bis {
+        margin-bottom: 1rem;
+      }
+    }
+    &__icon-text {
+      margin-bottom: 0.5rem;;
+    } 
+  }
+}
+

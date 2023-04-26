@@ -1,0 +1,48 @@
+.header {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__link-logo {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 8px solid #ffffff;
+    border-radius: 12px;
+    animation: flashing 1s infinite alternate;
+  }
+  &__logo {
+    width: 200px;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .header {
+    &__logo {
+      width: 200px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@keyframes flashing {
+  0%, 18%, 21%, 32%, 35%, 39%, 42%, 100% {
+    box-shadow:
+    0 0 15px #9176ffdc,
+    inset 0 0 15px #9176ffdc,
+    0 0 35px #5d40d2cc,
+    inset 0 0 35px #5d40d2cc,
+    0 0 45px #5d40d2cc,
+    inset 0 0 45px #5d40d2cc; 
+  }
+  20%, 34%, 41% {        
+    box-shadow: none;
+  } 
+}

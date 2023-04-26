@@ -1,0 +1,48 @@
+.nav-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+
+.nav-mobile {
+width: 100%;
+position: fixed;
+top: 0;
+z-index: 10;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+    &__open {
+      transform: translateX(0);
+      opacity: 1;
+      transition: 1s ease-out;
+    }
+    &__close {
+      transform: translateX(100%);
+      opacity: 0;
+      transition: 1s ease-in;
+    }
+
+  &__link {
+    width: 100%;
+    padding: 1.1rem;
+    border-bottom: 0.2rem solid #00000095;
+    background-color: #ffffff;
+    font-size: 1.2rem;
+    font-family: "ambleregular", sans-serif;
+    cursor: pointer;
+  }
+  &__icon {
+    font-size: 28px;
+    position: absolute;
+    top: 0.2rem;
+    right: 0.4rem;
+    z-index: 11;
+    cursor: pointer;
+    &--open {
+      color: #ffffff;
+    }
+  }
+}
+}

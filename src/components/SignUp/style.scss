@@ -1,0 +1,116 @@
+@import '../../styles/_mixins.scss';
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+    @include title;
+  }
+
+  &__form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &-input, &-button, &-label {
+      width: 100%;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+    &-label {
+      color: #ffffff;
+    }
+    &-input, &-button {
+      padding: 0.6rem;
+      border: #ffffff solid 2px;
+      border-radius: 5px;
+    }
+    &-button {
+      margin-top: 1.5rem;
+      background-color: #692398;
+      color: #ffffff;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  &__error {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
+    background-color: #ffffff;
+    &-icon {
+      margin-right: 0.7rem;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #692398;
+    }
+    &-text {
+      color: #692398;
+      font-size: 1rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .signup {
+    &__form {
+      width: 50%;
+    }
+    &__error {
+      width: 50%;
+    }
+  }
+  
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .signup {
+    &__form {
+      width: 40%;
+      &-input, &-button, &-label {
+        font-size: 1.4rem;
+      }
+    }
+    &__error {
+      width: 40%;
+      &-icon {
+        font-size: 4rem;
+      }
+      &-text {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .signup {
+    &__form {
+      width: 30%;
+      &-input, &-button, &-label {
+        font-size: 1.4rem;
+      }
+    }
+    &__error {
+      width: 30%;
+      &-icon {
+        font-size: 4rem;
+      }
+      &-text {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

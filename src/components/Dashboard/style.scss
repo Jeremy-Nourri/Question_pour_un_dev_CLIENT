@@ -1,0 +1,94 @@
+@import '../../styles/_mixins.scss';
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+  &__nickname {
+    color: #ffffff;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  &__button {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 0.6rem;
+    border: #ffffff solid 2px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #692398;
+    color: #ffffff;
+  }
+
+  &__scores {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #55555570;
+    border: #692398 solid 2px;
+    border-radius: 15px;
+    &-title {
+      @include title;
+    }
+    &-text {
+      color: #ffffff;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background-color: #55555570;
+        &-img {
+          width: 20%;
+          height: 20%;
+        }
+        &-text {
+          color: #ffffff;
+          font-size: 1.2rem;
+          text-align: center;
+        }
+    }
+  }
+  &__remove {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #55555570;
+    border: #692398 solid 2px;
+    border-radius: 15px;
+    &-title {
+      @include title;
+    }
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .dashboard {
+    &__button {
+      width: 200px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+

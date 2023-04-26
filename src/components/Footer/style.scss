@@ -1,0 +1,42 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__background {
+    width: 100%;
+    height: 450px;
+    background-image: url('src/assets/img/background5.jpg');
+    background-size: cover;
+    background-position-x: center;
+    opacity: 0.8;
+  }
+  &__container {
+    width: 100%;
+    background-color: black;
+    padding: 1rem;
+  }
+  &__text {
+    color: white;
+    font-family: 'ambleregular', sans-serif;
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 2rem;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+
+.footer {
+  width: 70%;
+  margin: 0 auto;
+
+  &__background {
+    display: none;
+  }
+
+}
+
+}

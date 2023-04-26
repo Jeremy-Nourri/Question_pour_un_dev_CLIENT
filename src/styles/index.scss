@@ -1,0 +1,46 @@
+@use 'reset';
+@use 'vars';
+
+@font-face {
+  font-family: 'ambleregular';
+  src: url('src/assets/fonts/Amble-Regular-webfont.woff') format('woff'),
+       url('src/assets/fonts/Amble-Regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+  font-family: 'ambleregular', sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+
+@media only screen and (max-width: 768px) {
+body {
+  background-image: url('../assets/img/background.jpeg');
+  background-size: cover;
+  background-position-x: center;
+}
+main {
+  width: 85%;
+  margin: 0 auto;
+  padding: 2rem 2.3rem;
+  background-color: #202020c2;
+}
+}
+
+@media only screen and (min-width: 769px) {
+  body {
+    background-image: url('../assets/img/background_desktop.jpg');
+    background-size: cover;
+  }
+  main {
+    width: 70%;
+    margin: 1rem auto;
+    padding: 2rem 2.3rem;
+    background-color: #2020209e;
+  }
+}

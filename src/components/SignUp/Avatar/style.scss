@@ -1,0 +1,86 @@
+@import '../../../styles/_mixins.scss';
+
+.avatar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #55555570;
+  border: #692398 solid 2px;
+  border-radius: 15px;
+
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &-label {
+      @include title;
+    }
+    &-input, &-button {
+      margin: 1rem auto;
+      padding: 0.6rem;
+      font-size: 1.2rem;
+      color: #ffffff;
+    }
+    &-button {
+      border: #ffffff solid 2px;
+      border-radius: 5px;
+      background-color: #692398;
+      cursor: pointer;
+    }
+    &-input {
+      background-color: transparent;
+      text-align: center;
+    }
+  }
+
+  &__preview-container {
+    width: 160px;
+    height: 160px;
+    margin: 1rem 0;
+    border: 2px solid #692398;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+  &__preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }  
+}
+
+input[type=file]::file-selector-button {
+  background: #692398;
+  margin-right: 1rem;
+  padding: 0.6rem;
+  border: #ffffff solid 2px;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media (min-width: 769px) {
+  .avatar {
+    &__form {
+      &-input, &-button {
+        font-size: 1.4rem;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      &-button {
+        width: 200px;
+      }
+    }
+    &__preview-container {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

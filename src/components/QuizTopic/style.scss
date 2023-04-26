@@ -1,0 +1,70 @@
+@import '../../styles/_mixins.scss';
+
+.quiz-topic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  &__title {
+    @include title;
+  }
+  &__image {
+    width: 128px;
+  }
+  &__text {
+    margin-top: 1.7rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 2rem;
+    justify-content: center;
+  }
+  &__container-level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__level {
+    width: 160px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1.5rem auto;
+    padding: 1.3rem 0;
+    border-radius: 15px;
+    background-color: #692398;
+    color: white;
+    font-size: 1.8rem;
+    text-align: center;
+    border: #ffffff solid 2px;
+  }
+  &__icon {
+    font-size: 3rem;
+    color: #ffffff;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+.quiz-topic {
+  &__text {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  &__container-level {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+  }
+  &__level {
+    margin: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #692398;
+      font-weight: 700;
+    }
+  }
+}
+}
