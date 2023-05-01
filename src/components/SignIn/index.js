@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 // import npm
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { TbFaceIdError } from "react-icons/tb";
+import { TbFaceIdError } from 'react-icons/tb';
 // import features
 import { usePostLoginMutation } from '../../features/API/apiSlice';
 import { login } from '../../features/loginSlice';
@@ -12,7 +13,6 @@ import Loader from '../Loader';
 import './style.scss';
 
 export default function SignIn() {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,14 +21,16 @@ export default function SignIn() {
 
   const isLogged = useSelector((state) => state.login.isLogged);
 
-  const [postLogin, { data: user, isSuccess, isError, isLoading }] = usePostLoginMutation();
+  const [postLogin, {
+    data: user, isSuccess, isError, isLoading,
+  }] = usePostLoginMutation();
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-      postLogin({ email, password });
-      dispatch(login(user));
-      setEmail('');
-      setPassword('');
+    postLogin({ email, password });
+    dispatch(login(user));
+    setEmail('');
+    setPassword('');
   };
 
   useEffect(() => {
@@ -88,5 +90,5 @@ export default function SignIn() {
 
       </main>
     );
- }
+  }
 }

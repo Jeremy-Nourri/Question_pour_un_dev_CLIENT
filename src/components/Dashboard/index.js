@@ -12,8 +12,7 @@ import Avatar from '../SignUp/Avatar';
 
 import './style.scss';
 
-export default function Dashboard () {
-
+export default function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,7 +25,8 @@ export default function Dashboard () {
   const handleDelete = async () => {
     try {
       await deleteUser(user.id);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -46,20 +46,19 @@ export default function Dashboard () {
   }
 
   if (user) {
-
-    return ( 
+    return (
 
       <main className="dashboard">
-        
+
         <p className="dashboard__nickname">Bienvenue {user.nickname} !</p>
 
         <Avatar />
 
         <div className="dashboard__scores">
           <h2 className="dashboard__scores-title">Tes scores</h2>
-            {scores === 0 && (
-              <p className="dashboard__scores-text">Tu n'as pas encore de score enregistré</p>
-            )}
+          {scores === 0 && (
+          <p className="dashboard__scores-text">Tu n'as pas encore de score enregistré</p>
+          )}
           <div className="dashboard__scores-list">
             {scores && scores.map((item) => (
               <div className="dashboard__scores-item" key={item.id}>
@@ -73,13 +72,12 @@ export default function Dashboard () {
           </div>
         </div>
 
-        <div className='dashboard__remove'>
-          <h2 className='dashboard__remove-title' >Supprimer ton compte</h2>
-          <button className="dashboard__button" onClick={handleDelete}>Valider la suppression</button>
+        <div className="dashboard__remove">
+          <h2 className="dashboard__remove-title">Supprimer ton compte</h2>
+          <button className="dashboard__button" onClick={handleDelete} type="button">Valider la suppression</button>
         </div>
 
       </main>
     );
   }
 }
-

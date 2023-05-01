@@ -1,8 +1,8 @@
-import { createApi, fetchBaseQuery  } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.API_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://devquiz-server.up.railway.app' }),
 
   endpoints: (builder) => ({
 
@@ -19,14 +19,14 @@ export const apiSlice = createApi({
       credentials: 'include',
     }),
     getTrueAnswers: builder.query({
-      query: () => `/answers/true`,
+      query: () => '/answers/true',
       credentials: 'include',
     }),
     getScores: builder.query({
       query: (userId) => ({
         url: `/score/${userId}`,
         credentials: 'include',
-      })
+      }),
     }),
     postScore: builder.mutation({
       query: (body) => ({
@@ -69,7 +69,7 @@ export const apiSlice = createApi({
         credentials: 'include',
       }),
     }),
-    
+
     uploadImage: builder.mutation({
       query: (body) => ({
         url: '/uploads',
@@ -79,11 +79,11 @@ export const apiSlice = createApi({
       }),
     }),
   }),
-})
+});
 
-export const { 
-  useGetQuizzesQuery, 
-  useGetQuizByTopicQuery, 
+export const {
+  useGetQuizzesQuery,
+  useGetQuizByTopicQuery,
   useGetQuestionsQuery,
   useGetTrueAnswersQuery,
   useGetScoresQuery,
@@ -93,4 +93,4 @@ export const {
   useDeleteUserMutation,
   useUploadImageMutation,
   usePostSignupMutation,
-} = apiSlice
+} = apiSlice;

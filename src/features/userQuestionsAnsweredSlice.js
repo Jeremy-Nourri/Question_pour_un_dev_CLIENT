@@ -1,16 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const userQuestionsAnsweredSlice = createSlice({
-  name: "userQuestionsAnswered",
+  name: 'userQuestionsAnswered',
   initialState: [],
 
   reducers: {
-    questionsAnswered: (state, action) => {
-      return state.concat(action.payload);
-    },
-    removeQuestionId: (state, action) => {
-      return state.filter((question) => question !== action.payload);
-    }
+    questionsAnswered: (state, action) => state.concat(action.payload),
+    removeQuestionId: (state, action) => state.filter((question) => question !== action.payload),
   },
 });
 

@@ -1,5 +1,4 @@
 // == Import npm
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // == Import features
@@ -21,7 +20,6 @@ import './styles.scss';
 
 // == Composant
 function App() {
-
   const isLogged = useSelector(selectIsLogged);
 
   return (
@@ -55,7 +53,7 @@ function App() {
           )}
         />
         <Route
-          path="/login" 
+          path="/login"
           element={(
             <SignIn />
           )}

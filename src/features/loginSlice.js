@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const loginSlice = createSlice({
-  name: "login",
+  name: 'login',
   initialState: {
     isLogged: false,
     user: {},
@@ -9,10 +9,10 @@ export const loginSlice = createSlice({
 
   reducers: {
     login: (state, action) => {
-        state.user = action.payload;
-        if (action.payload) {
-          state.isLogged = true;
-        }
+      state.user = action.payload;
+      if (action.payload) {
+        state.isLogged = true;
+      }
     },
 
     logout: (state) => {
@@ -22,7 +22,7 @@ export const loginSlice = createSlice({
 
     modifyAvatar: (state, action) => {
       state.user.avatar = action.payload;
-    }
+    },
   },
 });
 

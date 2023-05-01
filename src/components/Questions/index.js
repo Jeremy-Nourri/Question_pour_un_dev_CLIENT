@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 // import npm
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -9,15 +10,14 @@ import { questionsAnswered, removeQuestionId } from '../../features/userQuestion
 import { selectCurrentUser, selectIsLogged } from '../../features/loginSlice';
 import { openModal, selectIsOpen } from '../../features/modalSlice';
 // import components
-import Answers from '../Questions/Answers';
-import Countdown from '../Questions/Countdown';
+import Answers from './Answers';
+import Countdown from './Countdown';
 import Modal from '../Modal';
-import Rules from '../Questions/Rules';
+import Rules from './Rules';
 // import style
 import './style.scss';
 
 export default function Questions() {
-
   const dispatch = useDispatch();
 
   const answersUser = useSelector((state) => state.userAnswers);
@@ -39,27 +39,21 @@ export default function Questions() {
 
   // i use rtk-query to get the questions and the true answers
   const { data: questions, isSuccess } = useGetQuestionsQuery({ quizId, difficultyId });
-  const { data: trueAnswers, } = useGetTrueAnswersQuery();
+  const { data: trueAnswers } = useGetTrueAnswersQuery();
   // i use rtk-query to post the score
   const [postScore] = usePostScoreMutation();
 
   // i want to start the countdown when the user click on the button
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (displayQuiz) {
-      const interval = 
-      countdown > 0 && setInterval(() => {
+      const interval = countdown > 0 && setInterval(() => {
+        // eslint-disable-next-line no-shadow
         setCountdown((countdown) => countdown - 1);
       }, 1000);
       return () => clearInterval(interval);
     }
   }, [displayQuiz, countdown]);
-
-  // i want to submit the score when the countdown is over
-  useEffect(() => {
-    if (countdown === 0) {
-      handleSubmit();
-    }
-  }, [countdown]);
 
   function handleOnClickDisplayQuiz() {
     setDisplayQuiz(true);
@@ -78,13 +72,13 @@ export default function Questions() {
     setGoodAnswers(count);
   }
 
-  function handleSubmit(_event) {
+  function handleSubmit() {
     countGoodAnswer();
     setIsSubmitted(true);
     dispatch(openModal());
     window.scrollTo(0, 0);
   }
-  
+
   function handleChange(event) {
     // i get the name and id of the input
     const { name, id } = event.target;
@@ -100,40 +94,42 @@ export default function Questions() {
     }
   }
 
+  // i want to submit the score when the countdown is over
+  useEffect(() => {
+    if (countdown === 0) {
+      handleSubmit();
+    }
+  }, [countdown]);
 
   if (isSuccess && displayQuiz === false) {
-
     return (
-      <Rules handleOnClickDisplayQuiz={handleOnClickDisplayQuiz} />      
+      <Rules handleOnClickDisplayQuiz={handleOnClickDisplayQuiz} />
     );
   }
 
   if (isSubmitted === false && displayQuiz === true) {
-
     return (
 
-      <main className="questions-page" >
+      <main className="questions-page">
 
         <Countdown countdown={countdown} />
 
         <form className="questions-page__form" onSubmit={handleSubmit}>
           { questions
-            && 
-            questions.map((item) => (
+            && questions.map((item) => (
               <div className="questions-page__item" key={item.id}>
                 <p className="questions-page__item-question">{item.content}</p>
 
-                  {((item.answers.map((answer) => (
-                    <Answers
-                      key={answer.id}
-                      answer={answer}
-                      handleChange={handleChange}
-                    />
-                  ))))}
+                {((item.answers.map((answer) => (
+                  <Answers
+                    key={answer.id}
+                    answer={answer}
+                    handleChange={handleChange}
+                  />
+                ))))}
 
               </div>
-            ))
-          }
+            ))}
         </form>
       </main>
     );
@@ -145,11 +141,10 @@ export default function Questions() {
     );
   }
 
-  if (isSubmitted === true ) {
-
+  if (isSubmitted === true) {
     return (
 
-      <main className="questions-page" >
+      <main className="questions-page">
 
         <p className="questions-page__score">{`Tu as ${goodAnswers} bonne(s) réponse(s) sur 10 !`}</p>
         {
@@ -157,27 +152,26 @@ export default function Questions() {
             <div className="questions-page__item" key={item.id}>
               <p className="questions-page__item-question">{item.content}</p>
               <div className="questions-page__answer">
-              {
+                {
                 item.answers.map((answer) => (
                   (answer.correct === true)
-                    &&
-                      <p className="questions-page__answer-label" key={answer.id}>{answer.content}</p>
+                    && <p className="questions-page__answer-label" key={answer.id}>{answer.content}</p>
                 ))
               }
-              {
+                {
                 item.answers.map((answer) => (
                   (answersUser.includes(answer.id.toString()) && answer.correct === false)
-                    &&
-                      <p className="questions-page__answer-label--false" key={answer.id}>{answer.content}</p>
+                    && <p className="questions-page__answer-label--false" key={answer.id}>{answer.content}</p>
                 ))
               }
-              {
+                {
                 item.answers.map((answer) => (
                   (answersUser.includes(answer.id.toString()) && answer.correct === true)
-                    &&
+                    && (
                       <p className="questions-page__answer-label--true" key={answer.id}>
-                       {answer.content}
+                        {answer.content}
                       </p>
+                    )
                 ))
               }
               </div>
@@ -186,12 +180,12 @@ export default function Questions() {
         }
         {
           isLogged
-            ?
-              <button 
+            ? (
+              <button
                 className="questions-page__submit"
                 type="button"
                 onClick={() => {
-                  postScore({ 
+                  postScore({
                     score: goodAnswers,
                     quizId: Number(quizId),
                     difficultyId: Number(difficultyId),
@@ -202,15 +196,17 @@ export default function Questions() {
               >
                 Enregistrer mon score
               </button>
-            :
+            )
+            : (
               <p className="questions-page__text-bottom">
                 Tu dois être connecté pour enregistrer ton score
               </p>
-        }
+            )
+}
         <Link to="/">
-          <button className="questions-page__submit">Retour à l'accueil</button>
+          <button className="questions-page__submit" type="button">Retour à l'accueil</button>
         </Link>
-        <p className="questions-page__text-bottom">Tu peux retrouver plus de quiz sur le site d'<Link to='https://www.alsacreations.com/quiz/' target='_blank'>alsa créations</Link></p>
+        <p className="questions-page__text-bottom">Tu peux retrouver plus de quiz sur le site d'<Link to="https://www.alsacreations.com/quiz/" target="_blank">alsa créations</Link></p>
       </main>
     );
   }
