@@ -31,7 +31,7 @@ export default function Questions() {
 
   const [goodAnswers, setGoodAnswers] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(90);
   const [displayQuiz, setDisplayQuiz] = useState(false);
 
   // i use useParams to get the quizId and difficultyId from the url

@@ -17,13 +17,17 @@
     align-items: center;
     justify-content: center;
 
-    &-input, &-button, &-label {
+    &-input, &-button {
       width: 100%;
       margin-bottom: 1rem;
       font-size: 1.2rem;
       text-align: center;
     }
     &-label {
+      width: 100%;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      text-align: center;
       color: #ffffff;
     }
     &-input, &-button {
@@ -86,10 +90,10 @@
     &__error {
       width: 40%;
       &-icon {
-        font-size: 4rem;
+        font-size: 3.5rem;
       }
       &-text {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
       }
     }
   }
@@ -106,10 +110,10 @@
     &__error {
       width: 30%;
       &-icon {
-        font-size: 4rem;
+        font-size: 3.5rem;
       }
       &-text {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
       }
     }
   }
