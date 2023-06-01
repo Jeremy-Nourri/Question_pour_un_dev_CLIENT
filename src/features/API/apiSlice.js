@@ -2,8 +2,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://devquiz-server.up.railway.app' }),
-
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.URL_API_PROD,
+  }),
   endpoints: (builder) => ({
 
     getQuizzes: builder.query({
