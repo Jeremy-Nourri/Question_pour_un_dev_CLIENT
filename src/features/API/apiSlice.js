@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://devquiz-server-api.up.railway.app',
+    baseUrl: 'http://localhost:3000',
   }),
   endpoints: (builder) => ({
 
@@ -26,6 +26,12 @@ export const apiSlice = createApi({
     getScores: builder.query({
       query: (userId) => ({
         url: `/score/${userId}`,
+        credentials: 'include',
+      }),
+    }),
+    getUser: builder.query({
+      query: (userId) => ({
+        url: `/user/${userId}`,
         credentials: 'include',
       }),
     }),
@@ -74,7 +80,7 @@ export const apiSlice = createApi({
     uploadImage: builder.mutation({
       query: (body) => ({
         url: '/uploads',
-        method: 'POST',
+        method: 'PATCH',
         credentials: 'include',
         body,
       }),
@@ -83,6 +89,7 @@ export const apiSlice = createApi({
 });
 
 export const {
+  useGetUserQuery,
   useGetQuizzesQuery,
   useGetQuizByTopicQuery,
   useGetQuestionsQuery,

@@ -4,7 +4,11 @@ export const loginSlice = createSlice({
   name: 'login',
   initialState: {
     isLogged: false,
-    user: {},
+    user: {
+      id: '',
+      nickname: '',
+      avatar: '',
+    },
   },
 
   reducers: {

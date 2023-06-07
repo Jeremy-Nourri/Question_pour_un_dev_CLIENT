@@ -8,7 +8,7 @@ import { usePostSignupMutation } from '../../features/API/apiSlice';
 import { login } from '../../features/loginSlice';
 // import components
 import Loader from '../Loader';
-import Avatar from './Avatar';
+import Avatar from '../Avatar';
 
 import './style.scss';
 
@@ -22,8 +22,6 @@ export default function SignUp() {
   const [nickname, setNickname] = useState('');
 
   const [postSignup, { data: user, isSuccess, isLoading }] = usePostSignupMutation();
-
-  console.log(user);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();

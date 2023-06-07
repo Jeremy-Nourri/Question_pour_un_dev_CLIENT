@@ -8,7 +8,7 @@ import { logout, selectCurrentUser } from '../../features/loginSlice';
 import { openModal, selectIsOpen } from '../../features/modalSlice';
 // import components
 import Modal from '../Modal';
-import Avatar from '../SignUp/Avatar';
+import Avatar from '../Avatar';
 
 import './style.scss';
 
@@ -19,8 +19,8 @@ export default function Dashboard() {
   const user = useSelector(selectCurrentUser);
   const modalStatus = useSelector(selectIsOpen);
 
-  const [deleteUser, { isSuccess: isDeleted }] = useDeleteUserMutation(user.id);
-  const { data: scores } = useGetScoresQuery(user.id);
+  const [deleteUser, { isSuccess: isDeleted }] = useDeleteUserMutation(user?.id);
+  const { data: scores } = useGetScoresQuery(user?.id);
 
   const handleDelete = async () => {
     try {
@@ -45,39 +45,37 @@ export default function Dashboard() {
     );
   }
 
-  if (user) {
-    return (
+  return (
 
-      <main className="dashboard">
+    <main className="dashboard">
 
-        <p className="dashboard__nickname">Bienvenue {user.nickname} !</p>
+      <p className="dashboard__nickname">Bienvenue {user && user.nickname} !</p>
 
-        <Avatar />
+      <Avatar />
 
-        <div className="dashboard__scores">
-          <h2 className="dashboard__scores-title">Tes scores</h2>
-          {scores === 0 && (
-          <p className="dashboard__scores-text">Tu n'as pas encore de score enregistré</p>
-          )}
-          <div className="dashboard__scores-list">
-            {scores && scores.map((item) => (
-              <div className="dashboard__scores-item" key={item.id}>
-                <img className="dashboard__scores-item-img" src={item.quiz.image} alt={item.quiz.topic} />
-                <p className="dashboard__scores-item-text">{item.quiz.topic}</p>
-                <p className="dashboard__scores-item-text">{item.difficulty.name}</p>
+      <div className="dashboard__scores">
+        <h2 className="dashboard__scores-title">Tes scores</h2>
+        {scores === 0 && (
+        <p className="dashboard__scores-text">Tu n'as pas encore de score enregistré</p>
+        )}
+        <div className="dashboard__scores-list">
+          {scores && scores.map((item) => (
+            <div className="dashboard__scores-item" key={item.id}>
+              <img className="dashboard__scores-item-img" src={item.quiz.image} alt={item.quiz.topic} />
+              <p className="dashboard__scores-item-text">{item.quiz.topic}</p>
+              <p className="dashboard__scores-item-text">{item.difficulty.name}</p>
 
-                <p className="dashboard__scores-item-text">{item.score} / 10</p>
-              </div>
-            ))}
-          </div>
+              <p className="dashboard__scores-item-text">{item.score} / 10</p>
+            </div>
+          ))}
         </div>
+      </div>
 
-        <div className="dashboard__remove">
-          <h2 className="dashboard__remove-title">Supprimer ton compte</h2>
-          <button className="dashboard__button" onClick={handleDelete} type="button">Valider la suppression</button>
-        </div>
+      <div className="dashboard__remove">
+        <h2 className="dashboard__remove-title">Supprimer ton compte</h2>
+        <button className="dashboard__button" onClick={handleDelete} type="button">Valider la suppression</button>
+      </div>
 
-      </main>
-    );
-  }
+    </main>
+  );
 }

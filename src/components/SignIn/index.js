@@ -27,10 +27,15 @@ export default function SignIn() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    postLogin({ email, password });
-    dispatch(login(user));
-    setEmail('');
-    setPassword('');
+    try {
+      await postLogin({ email, password }).unwrap();
+      postLogin({ email, password });
+      setEmail('');
+      setPassword('');
+    }
+    catch (error) {
+      console.log('Failed to login', error);
+    }
   };
 
   useEffect(() => {
@@ -49,6 +54,7 @@ export default function SignIn() {
     return (
       <main className="login">
         <h1 className="login__title">Connexion</h1>
+
         <form className="login__form" onSubmit={handleSubmit}>
           <label className="login__form-label" htmlFor="email">Email</label>
           <input
@@ -62,7 +68,6 @@ export default function SignIn() {
             onChange={(evt) => {
               setEmail(evt.target.value);
             }}
-
           />
           <label className="login__form-label" htmlFor="password">Mot de passe</label>
           <input
@@ -76,7 +81,6 @@ export default function SignIn() {
             onChange={(evt) => {
               setPassword(evt.target.value);
             }}
-
           />
           <button className="login__form-button" type="submit">Se connecter</button>
         </form>
